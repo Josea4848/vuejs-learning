@@ -18,27 +18,43 @@
         <hr>
         <div class="form-todo form-group">
           <p>
-            <input placeholder="nome" type="text" name="author" class="form-control">
+            <input v-model="name" placeholder="nome" type="text" name="author" class="form-control">
           </p>
           <p>
-            <textarea name="message" placeholder="Comentário" class="form-control"></textarea>
+            <textarea v-model="message" name="message" placeholder="Comentário" class="form-control"></textarea>
           </p>
-          <button type="submit" class="btn btn-primary">Comentar</button>
+          <button v-on:click="addData" type="submit" class="btn btn-primary">Comentar</button>
         </div>
         <hr>
 
         <div class="list-group">
-          <div class="list-group-item">
-            <span class="comment__autor">Autor: JUCA</span>
-            <p>Mensagem de teste</p>
+          <div class="list-group-item" v-for="comment in comments">
+            <span class="comment__autor">Autor: {{comment.name}}</span>
+            <p>{{comment.message}}</p>
             <div>
-              <a href="#" title="Excluir">Excluir</a>
+              <a  href="#" title="Excluir">Excluir</a>
             </div>
           </div>     
         </div>
 
       </div>        
-      `
+      `,
+      data() {
+        return {
+          comments: [{
+            name: "Juca",
+            message: "Muito legal"
+          }],
+          name:'',
+          message:'',
+        }
+      },
+      methods: { 
+        addData() {
+          if(this.name.length && this.message.length)
+            this.comments.push({name: this.name,message:this.message})
+        }
+      }
     })
   </script>
 </body>
