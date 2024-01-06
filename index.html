@@ -28,11 +28,11 @@
         <hr>
 
         <div class="list-group">
-          <div class="list-group-item" v-for="comment in comments">
+          <div class="list-group-item" v-for="(comment, index) in comments">
             <span class="comment__autor">Autor: {{comment.name}}</span>
             <p>{{comment.message}}</p>
             <div>
-              <a  href="#" title="Excluir">Excluir</a>
+              <a v-on:click="removeData(index)"  href="#" title="Excluir">Excluir</a>
             </div>
           </div>     
         </div>
@@ -51,8 +51,15 @@
       },
       methods: { 
         addData() {
-          if(this.name.length && this.message.length)
+          if(this.name.trim().length && this.message.trim().length) {
             this.comments.push({name: this.name,message:this.message})
+            this.name = '';
+            this.message = '';
+          }
+        },
+
+        removeData(index) {
+          this.comments.splice(index,1);
         }
       }
     })
