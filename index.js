@@ -29,10 +29,7 @@ new Vue ({
   `,
   data() {
     return {
-      comments: [{
-        name: "Juca",
-        message: "Muito legal"
-      }],
+      comments: [],
       name:'',
       message:'',
     }
@@ -56,6 +53,11 @@ new Vue ({
       return this.comments.map(comment => {
         return {...comment, name: comment.name.trim() === '' ? 'Anônimo' : comment.name};
       })
+    }
+  },
+  watch: {
+    comments() {
+      alert("ahha");
     }
   }
 })
