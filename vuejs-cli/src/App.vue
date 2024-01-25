@@ -1,15 +1,15 @@
 <template>
-  <Comments />
+  <comments-list />
 </template>
 
 <script>
-import Comments from './components/Comments'
+import CommentsList from './components/CommentsList'
 
 export default {
   name: 'App',
   
   components: {
-    Comments
+    CommentsList
   }
 }
 </script>
